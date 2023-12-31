@@ -7,11 +7,11 @@ services:
       - traefik.http.services.app.loadbalancer.server.port=8080
       - traefik.http.routers.app-http.entrypoints=http
       - traefik.http.routers.app-http.rule=Host(`test.test.mortarbulksms.com`)
-      - traefik.docker.network=traefik.public
+      - traefik.docker.network=fastapi-public
     networks:
-      -traefik-public
+      -fastapi-public
 
 networks:
-  traefik-public:
+  fastapi-public:
     external: true
 
