@@ -2,6 +2,16 @@ services:
   backend:
     build: ./
     restart: always
-    ports:
-      - 5000:80
+    labels:
+      - traefik.enable=true
+      - traefik.http.services.app.loadbalancer.server.port=8080
+      - traefik.http.routers.app-http.entrypoints=http
+      - traefik.http.routers.app-http.rule=Host(`test.test.mortarbulksms.com`)
+      - traefik.docker.network=traefik.public
+    networks:
+      -traefik-public
+
+networks:
+  traefik-public:
+    external: true
 
