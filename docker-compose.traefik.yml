@@ -39,8 +39,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - fastapi-public
+      - traefik-public
 
 networks:
-  fastapi-public:
-    external: true
+  traefik-public:
+    name: traefik-public
+    external: false

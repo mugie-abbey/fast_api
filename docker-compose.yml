@@ -3,15 +3,19 @@ services:
     build: ./
     restart: always
     labels:
-      - traefik.enable=true
-      - traefik.http.services.app.loadbalancer.server.port=8080
-      - traefik.http.routers.app-http.entrypoints=http
-      - traefik.http.routers.app-http.rule=Host(`test.test.mortarbulksms.com`)
-      - traefik.docker.network=fastapi-public
-    networks:
-      -fastapi-public
+      traefik.docker.network: traefik-public
+      traefik.enable: "true"
+      traefik.http.routers.api-http.entrypoints: http
+      traefik.http.routers.api-http.middlewares: https-redirect
+      traefik.http.routers.api-http.rule: Host(`test.mortarbulksms.com`)
+      traefik.http.routers.api-https.tls: "true"
+      traefik.http.routers.api-https.tls.certresolver: le
+      traefik.http.services.api.loadbalancer.server.port: "8080"
+  networks:
+    traefik-public: null
 
 networks:
-  fastapi-public:
+  traefik-public:
+    name: traefik-public
     external: true
 
