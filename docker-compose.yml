@@ -12,7 +12,7 @@ services:
       traefik.http.routers.api-https.tls.certresolver: le
       traefik.http.services.api.loadbalancer.server.port: "8080"
   networks:
-    traefik-public: null
+    -traefik-public
 
 networks:
   traefik-public:
