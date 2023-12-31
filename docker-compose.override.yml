@@ -1,7 +1,7 @@
 services:
   backend:
     ports:
-      - 80:80
+      - 8080:8080
 networks:
   traefik-public:
     external: false
